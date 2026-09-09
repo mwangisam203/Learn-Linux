@@ -78,3 +78,25 @@ data, not filenames; stderr is not included by default.
 
 Avoid `cat file > file`: the shell truncates the destination before `cat` reads
 it. Use a different output path when saving transformed text.
+
+## Help and exit statuses
+
+```bash
+ls --help
+help cd
+grep 'NOT_PRESENT' scratch/events.log
+echo $?
+```
+
+Many GNU commands support `--help`. `cd` is a Bash builtin, so use `help cd`.
+`man ls` opens its manual if manuals are installed; press `q` to leave.
+`$?` holds the previous command's exit status, so inspect it immediately. For
+`grep`, `0` means a match, `1` means no match, and `2` means an error. Generally,
+zero means success and nonzero indicates another outcome or failure, depending
+on the command.
+
+## Check your understanding
+
+1. Why might a filename search find files that a content search does not?
+2. Predict what changes if you replace `>>` with `>` in the append example.
+3. Record a command, its output, and your explanation in the learning log.
