@@ -42,3 +42,28 @@ ls -l labs/file-operations/scratch/permissions.txt
 add them for each category. `640` gives the owner read/write, the group read, and
 others no permissions. `u+x` adds execute for the owner, preserving other bits.
 An empty file does not become a useful program merely by adding execute permission.
+
+## Understand the supplied links
+
+An inode stores metadata and references to file data. A directory entry associates
+a name with an inode. Inode numbers identify objects within a filesystem; matching
+numbers on different filesystems do not imply the same object.
+
+From the repository root:
+
+```bash
+cd labs/links
+ls -li original.txt hard.txt soft.txt
+readlink soft.txt
+cat original.txt hard.txt soft.txt
+```
+
+- `original.txt` and `hard.txt` are names for the same inode. Neither name is more
+  fundamental. Editing either modifies the same data.
+- `soft.txt` has its own inode and stores the target path `original.txt`.
+  `readlink` prints that stored path; `cat` follows it.
+- A relative symlink target is resolved relative to the directory containing the
+  link. Moving these three entries together kept the example working.
+- Symlinks do not increase the target's hard-link count.
+- Hard links cannot cross filesystem boundaries and normally cannot name
+  directories. Symlinks can refer to directories, other filesystems, or missing paths.
