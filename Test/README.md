@@ -9,22 +9,26 @@ practice data.** Empty files are intentional; this is not a working application.
 ```text
 .
 ├── README.md                   # Purpose, folder map, and where to begin
+├── docs_link -> labs/file-operations/practice/docs
 ├── notes/                      # Actual study notes
 │   ├── 01-navigation-and-files.md
 │   ├── 02-reading-and-searching.md
 │   ├── 03-permissions-and-links.md
+│   ├── 04-copy-move-and-link-practice.md
 │   ├── learning-log.md
 │   └── original-link-exercise.md
 └── labs/                       # Files to inspect and manipulate
     ├── file-operations/
     │   ├── backups/            # Dummy backup files
-    │   ├── test_main.py        # Empty practice file
+    │   ├── test_main_hard.py   # Remaining name from the file identity exercise
     │   └── practice/
     │       ├── .env            # Empty hidden file
     │       ├── config.json     # Empty configuration prop
-    │       ├── docs/notes.txt  # Dummy text file, not study notes
+    │       ├── docs/
+    │       │   ├── notes.txt  # Dummy text file, not study notes
+    │       │   └── file_backup.txt # Moved from backups/
     │       ├── logs/           # Initially empty
-    │       └── src/            # Dummy Python files and utils/
+    │       └── src/            # Dummy Python files, test_copy.py, and utils/
     └── links/
         ├── original.txt
         ├── hard.txt           # Same inode as original.txt
@@ -41,9 +45,15 @@ Open a Bash terminal in the repository root and follow these notes in order:
 1. [Navigation and file operations](notes/01-navigation-and-files.md)
 2. [Reading, searching, and shell input/output](notes/02-reading-and-searching.md)
 3. [Permissions, inodes, and links](notes/03-permissions-and-links.md)
+4. [Copy, move, and link practice](notes/04-copy-move-and-link-practice.md)
 
 Each note states where to run its examples. Run commands individually and observe
 the results. Commands affect the paths you give them, even in a practice repository.
+
+The latest session moved a backup into the mock docs folder, left a remaining test
+filename and a separate copy, and added `docs_link` for directory navigation.
+The fourth note explains the observed results. Hard-link identity is local to the
+working filesystem; Git does not preserve it when cloning.
 
 ## README versus notes
 
