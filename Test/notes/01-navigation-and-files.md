@@ -83,3 +83,10 @@ wc -c practice/config.json
 path as depth zero; `-print` prints each selected path. `file` identifies content
 type, and `wc -c` counts bytes. The supplied JSON file is empty: its extension is
 only a name, and it does not contain valid JSON yet.
+
+## Check your understanding
+
+1. Why does `ls practice` leave `pwd` unchanged?
+2. Can you locate `.env` using `ls -la practice`?
+3. Rename your scratch message and locate it without changing directories.
+4. Explain the difference between `rmdir` and `rm` in your learning log.
