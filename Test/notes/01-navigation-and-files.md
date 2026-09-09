@@ -67,3 +67,19 @@ rmdir scratch/nested
 already exists as a directory, the source is copied inside it.
 `rm -r directory` removes a directory and its contents. Terminal removal normally
 does not use the desktop Trash. Recursive removal is unnecessary for this exercise.
+
+## Inspect the practice tree
+
+Still in `labs/file-operations/`:
+
+```bash
+find practice -maxdepth 2 -print
+ls -la practice
+file practice/config.json
+wc -c practice/config.json
+```
+
+`find` walks a directory tree. `-maxdepth 2` limits descent, counting the starting
+path as depth zero; `-print` prints each selected path. `file` identifies content
+type, and `wc -c` counts bytes. The supplied JSON file is empty: its extension is
+only a name, and it does not contain valid JSON yet.
