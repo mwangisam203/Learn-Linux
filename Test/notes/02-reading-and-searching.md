@@ -30,3 +30,24 @@ less scratch/events.log
 - `less` opens a scrollable view. Press `/`, type a search, and press Enter;
   `n` goes to the next match and `q` quits. Use `cat` if `less` is unavailable.
 - `tail -f file` watches for appended data. Stop it with `Ctrl+C`.
+
+## Search contents versus names
+
+Still in `labs/file-operations/`:
+
+```bash
+grep -n 'ERROR' scratch/events.log
+grep -i 'info' scratch/events.log
+grep -F 'missing file' scratch/events.log
+find practice -type f -name '*.py'
+find practice -type d
+```
+
+`grep` searches **file contents** and prints matching lines. `-n` adds line numbers,
+`-i` ignores letter case, and `-F` treats the pattern as literal text instead of a
+regular expression. The first command prints `2:ERROR missing file`.
+
+`find` searches **filesystem entries**. `-type f` selects regular files, `-type d`
+selects directories, and `-name '*.py'` matches names ending in `.py`. Quotes keep
+Bash from expanding `*` before `find` receives it. Empty Python files can match a
+filename search while containing no text for `grep` to match.
