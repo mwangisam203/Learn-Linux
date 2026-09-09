@@ -67,3 +67,49 @@ cat original.txt hard.txt soft.txt
 - Symlinks do not increase the target's hard-link count.
 - Hard links cannot cross filesystem boundaries and normally cannot name
   directories. Symlinks can refer to directories, other filesystems, or missing paths.
+
+## Repeat the deletion experiment separately
+
+The supplied links already exist. Run this in Bash to create a separate temporary
+example without overwriting them:
+
+```bash
+link_lab=$(mktemp -d)
+cd "$link_lab"
+printf 'original content\n' > original.txt
+ln original.txt hard.txt
+ln -s original.txt soft.txt
+ls -li original.txt hard.txt soft.txt
+printf 'changed\n' >> original.txt
+cat soft.txt
+cat hard.txt
+rm -i original.txt
+# Answer y to perform the deletion experiment.
+cat hard.txt
+cat soft.txt
+find . -xtype l
+```
+
+`mktemp -d` creates a unique temporary directory and prints its path. `$(...)`
+captures the output into the `link_lab` variable. `ln target name` creates a hard
+link; `ln -s target name` creates a symbolic link.
+
+Before deletion, both reads include `changed`. After confirming removal,
+`hard.txt` still reads the data. `soft.txt` points to a missing name, so reading
+it fails. GNU `find . -xtype l`, with its default behavior of not following
+symlinks during traversal, identifies the broken link in this example.
+
+Removing a name does not remove the other hard links. File data is reclaimable
+once the last hard link is removed and no open file handles keep it alive.
+
+Optional cleanup of exactly the temporary entries:
+
+```bash
+rm -i hard.txt soft.txt
+cd -
+rmdir "$link_lab"
+unset link_lab
+```
+
+Removing a symlink removes the link itself. `rmdir` succeeds only when the temporary
+directory is empty; declining a removal prompt leaves it nonempty.
