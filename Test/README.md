@@ -44,3 +44,16 @@ Open a Bash terminal in the repository root and follow these notes in order:
 
 Each note states where to run its examples. Run commands individually and observe
 the results. Commands affect the paths you give them, even in a practice repository.
+
+## README versus notes
+
+| Location | What belongs here |
+| --- | --- |
+| `README.md` | Purpose, structure, how to start, and links to learning material |
+| `notes/` | Concepts, syntax, flag explanations, examples, expected results, and mistakes |
+| `notes/learning-log.md` | Personal observations, experiments, and questions |
+| `labs/` | Dummy files used by exercises |
+
+Keep detailed explanations in notes and link to them here. Your former README is
+preserved in [original-link-exercise.md](notes/original-link-exercise.md). Its paths
+assume the old layout; use the updated links note for runnable exercises.
