@@ -128,3 +128,10 @@ ls labs/practice_link/
 The target is relative to `labs/`, where the link lives. The trailing slash in the
 last command accesses the target directory's contents. To remove only this link,
 use `rm -i labs/practice_link` with no trailing slash.
+
+## Check your understanding
+
+1. Which two supplied names share an inode, and why?
+2. Why can a symlink exist when its target does not?
+3. Why can moving a relative symlink by itself break it?
+4. How do directory permissions differ from file permissions?
