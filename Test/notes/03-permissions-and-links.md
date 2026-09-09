@@ -113,3 +113,18 @@ unset link_lab
 
 Removing a symlink removes the link itself. `rmdir` succeeds only when the temporary
 directory is empty; declining a removal prompt leaves it nonempty.
+
+## Link to a directory
+
+Start again from the repository root. Run once; inspect `practice_link` first if
+it already exists.
+
+```bash
+ln -s file-operations/practice labs/practice_link
+ls -l labs/practice_link
+ls labs/practice_link/
+```
+
+The target is relative to `labs/`, where the link lives. The trailing slash in the
+last command accesses the target directory's contents. To remove only this link,
+use `rm -i labs/practice_link` with no trailing slash.
