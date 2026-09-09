@@ -1,1 +1,1 @@
-original_renamed.txt
+original.txt
