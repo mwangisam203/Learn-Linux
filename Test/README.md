@@ -33,3 +33,14 @@ practice data.** Empty files are intentional; this is not a working application.
 
 Git does not track empty directories, so `practice/logs/` may need recreating
 after cloning. Tool-managed hidden directories are omitted from this map.
+
+## Where to begin
+
+Open a Bash terminal in the repository root and follow these notes in order:
+
+1. [Navigation and file operations](notes/01-navigation-and-files.md)
+2. [Reading, searching, and shell input/output](notes/02-reading-and-searching.md)
+3. [Permissions, inodes, and links](notes/03-permissions-and-links.md)
+
+Each note states where to run its examples. Run commands individually and observe
+the results. Commands affect the paths you give them, even in a practice repository.
