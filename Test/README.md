@@ -57,3 +57,11 @@ the results. Commands affect the paths you give them, even in a practice reposit
 Keep detailed explanations in notes and link to them here. Your former README is
 preserved in [original-link-exercise.md](notes/original-link-exercise.md). Its paths
 assume the old layout; use the updated links note for runnable exercises.
+
+## Topics to learn next
+
+- Processes and signals: `ps`, `top`, `kill`
+- Storage: `df`, `du`, mounting
+- Users, groups, and ownership
+- Packages, services, and logs
+- Shell scripts, variables, and exit statuses
