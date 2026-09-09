@@ -51,3 +51,30 @@ regular expression. The first command prints `2:ERROR missing file`.
 selects directories, and `-name '*.py'` matches names ending in `.py`. Quotes keep
 Bash from expanding `*` before `find` receives it. Empty Python files can match a
 filename search while containing no text for `grep` to match.
+
+## Redirection and pipes
+
+Commands commonly read standard input (stdin), write results to standard output
+(stdout), and write diagnostics to standard error (stderr). The shell connects
+or redirects these streams.
+
+| Syntax | Effect |
+| --- | --- |
+| `command > file` | Writes stdout to a file, creating or truncating it |
+| `command >> file` | Appends stdout, creating the file if needed |
+| `command 2> file` | Writes stderr to a file, creating or truncating it |
+| `command < file` | Reads stdin from a file |
+| `first \| second` | Connects the first command's stdout to the second's stdin |
+
+```bash
+printf 'INFO checked\n' >> scratch/events.log
+grep 'INFO' scratch/events.log | wc -l
+wc -l < scratch/events.log
+```
+
+After one append, the pipeline prints `3` (INFO matches), and the final command
+prints `4` (all newlines). Repeating the append increases both counts. Pipes carry
+data, not filenames; stderr is not included by default.
+
+Avoid `cat file > file`: the shell truncates the destination before `cat` reads
+it. Use a different output path when saving transformed text.
