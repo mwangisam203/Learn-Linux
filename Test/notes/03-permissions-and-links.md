@@ -45,6 +45,10 @@ An empty file does not become a useful program merely by adding execute permissi
 
 ## Understand the supplied links
 
+These inode relationships describe this working directory. Git does not preserve
+hard-link relationships in a fresh clone; see [what Git preserves](04-copy-move-and-link-practice.md)
+and use the temporary exercise below to recreate the experiment.
+
 An inode stores metadata and references to file data. A directory entry associates
 a name with an inode. Inode numbers identify objects within a filesystem; matching
 numbers on different filesystems do not imply the same object.

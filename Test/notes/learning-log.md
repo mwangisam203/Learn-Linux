@@ -28,3 +28,23 @@ Copy this template for each session:
 **Mistake and correction:** What failed, what caused it, and what fixed it?
 
 **Next question:** What should I try or read next?
+
+## 2026-09-09 — Inspect moved files, copies, and links
+
+**Goal:** Understand the difference between a path, file contents, and file identity.
+
+**Starting directory:** `/home/sam/Learn-Linux/Test`
+
+**Observed result:** The backup text is now in `practice/docs/`; `test_main.py`
+is absent; `test_main_hard.py` remains. `practice/src/test_copy.py` has a different
+inode from the remaining test file. Both are empty and each has one hard link.
+`docs_link` resolves to `labs/file-operations/practice/docs`.
+
+**Explanation:** Different paths can share an inode through hard links, while
+identical contents can belong to independent files. A symbolic link stores a
+path. The observed state is consistent with a copy and a hard-link deletion
+exercise, but does not establish the exact command history.
+
+**Next question:** Repeat the temporary-directory link exercise and inspect the
+link count before and after deleting one name. See the
+[session notes](04-copy-move-and-link-practice.md) for commands and explanations.
