@@ -20,6 +20,9 @@ file was copied or moved from which source.
 
 ## Inspect the result without changing it
 
+For a full explanation of output fields, timestamps, and symlink handling, see
+[file metadata with stat](05-file-metadata-with-stat.md).
+
 Run from the repository root (`Test/`):
 
 ```bash
