@@ -18,6 +18,7 @@ This is invented log data. Repeating `printf` replaces this sample file.
 output in the order you supply them. It does not add headings or separators.
 Its syntax is `cat [options] [file...]`.
 
+
 Run from `labs/file-operations/`, after creating the sample above:
 
 ```bash
@@ -92,7 +93,9 @@ These filename examples assume those files exist.
 
 Use `cat` for small text files. Use `less` for long text, and `file` to identify
 unknown file types before displaying them; binary data can include terminal
-control characters. `cat --help` lists the GNU options used here.
+control characters. `cat --help` lists the GNU options used here. Continue with
+[viewing and editing file content](06-viewing-and-editing-content.md) for `less`,
+`nano`, Vim, `tee`, and safe `sed` exercises.
 
 ## Preview, page through, and count text
 
