@@ -1,3 +1,4 @@
 original content
 changed
 third line
+new line
