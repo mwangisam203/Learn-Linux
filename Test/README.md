@@ -15,6 +15,7 @@ practice data.** Empty files are intentional; this is not a working application.
 │   ├── 02-reading-and-searching.md
 │   ├── 03-permissions-and-links.md
 │   ├── 04-copy-move-and-link-practice.md
+│   ├── 05-file-metadata-with-stat.md
 │   ├── learning-log.md
 │   └── original-link-exercise.md
 └── labs/                       # Files to inspect and manipulate
@@ -46,6 +47,7 @@ Open a Bash terminal in the repository root and follow these notes in order:
 2. [Reading, searching, and shell input/output](notes/02-reading-and-searching.md)
 3. [Permissions, inodes, and links](notes/03-permissions-and-links.md)
 4. [Copy, move, and link practice](notes/04-copy-move-and-link-practice.md)
+5. [File metadata with stat](notes/05-file-metadata-with-stat.md)
 
 Each note states where to run its examples. Run commands individually and observe
 the results. Commands affect the paths you give them, even in a practice repository.
