@@ -92,6 +92,13 @@ If you're not sure where a file actually lives:
 bash
 #example -->> find ~ -name "01-navigation-and-files.md"
 
+
+cd ~/Learn-Linux/Test
+realpath notes/01-navigation-and-files.md        # absolute path from a relative one
+realpath labs/links/soft.txt                      # follows the symlink to original.txt's real location
+readlink labs/links/soft.txt                       # shows the raw, unresolved target
+ls -la labs/links/                                  # visually confirms the -> target
+
 ## Check your understanding
 
 1. Why does `ls practice` leave `pwd` unchanged?
