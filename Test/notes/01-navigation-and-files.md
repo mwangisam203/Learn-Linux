@@ -98,3 +98,12 @@ bash
 2. Can you locate `.env` using `ls -la practice`?
 3. Rename your scratch message and locate it without changing directories.
 4. Explain the difference between `rmdir` and `rm` in your learning log.
+
+Round 5 — locate gotcha, same idea
+
+Right after you create test_copy.py in step 1 above, before touching updatedb:
+
+bash
+locate test_copy.py     # very likely empty — index doesn't know it exists yet
+sudo updatedb
+locate test_copy.py     # now it should show the full path
