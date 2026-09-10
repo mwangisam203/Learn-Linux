@@ -84,6 +84,14 @@ path as depth zero; `-print` prints each selected path. `file` identifies conten
 type, and `wc -c` counts bytes. The supplied JSON file is empty: its extension is
 only a name, and it does not contain valid JSON yet.
 
+
+When in doubt, use find to locate it, then cat the result
+
+If you're not sure where a file actually lives:
+
+bash
+#example -->> find ~ -name "01-navigation-and-files.md"
+
 ## Check your understanding
 
 1. Why does `ls practice` leave `pwd` unchanged?
