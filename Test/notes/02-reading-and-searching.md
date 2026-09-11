@@ -134,6 +134,130 @@ selects directories, and `-name '*.py'` matches names ending in `.py`. Quotes ke
 Bash from expanding `*` before `find` receives it. Empty Python files can match a
 filename search while containing no text for `grep` to match.
 
+## Practice grep with the application log
+
+The repository now includes an invented log at `practice/logs/app.log`. Run these
+commands from `labs/file-operations/`:
+
+```bash
+grep -n 'ERROR' practice/logs/app.log
+grep -in 'server' practice/logs/app.log
+grep -En 'ERROR|WARNING' practice/logs/app.log
+grep -c 'ERROR' practice/logs/app.log
+grep -n -C 1 'High memory' practice/logs/app.log
+```
+
+| Option | Meaning |
+| --- | --- |
+| `-n` | Include the line number |
+| `-i` | Ignore uppercase/lowercase differences |
+| `-E` | Use extended regular expressions; `|` means “or” |
+| `-c` | Print the number of matching lines instead of the lines |
+| `-v` | Invert the selection and print nonmatching lines |
+| `-w` | Require a whole-word match |
+| `-A N`, `-B N`, `-C N` | Show N lines after, before, or around each match |
+| `-l` | Print filenames containing at least one match |
+| `-q` | Print nothing; communicate the result through the exit status |
+
+The sample has three `ERROR` lines, so `grep -c 'ERROR'` prints `3`. `-c` counts
+matching **lines**, not every occurrence within those lines. Quote patterns so the
+shell does not interpret characters such as `*`, `?`, or `|` before `grep` does.
+
+Use `-F` for literal text and `-E` when you deliberately need a regular expression:
+
+```bash
+grep -Fn '/api/users' practice/logs/app.log
+grep -En '^(.* )?(ERROR|WARNING) ' practice/logs/app.log
+```
+
+The second expression is more complex than this log requires, but it demonstrates
+`^` for the start of a line, parentheses for grouping, `|` for alternatives, `?`
+for an optional group, and `.*` for any number of characters. Build expressions
+in small steps and test them on practice data.
+
+To search a directory recursively while limiting filenames:
+
+```bash
+grep -rn --include='*.log' 'ERROR' practice
+```
+
+`-r` descends into directories. `--include='*.log'` searches only names matching
+the quoted shell-style pattern. Recursive searches can produce lots of output;
+start from the narrowest useful directory and add `--exclude-dir` when necessary.
+
+## Extract fields from the CSV sample
+
+The made-up `practice/data.csv` file contains a header followed by four records:
+
+```bash
+column -s, -t practice/data.csv
+cut -d, -f1 practice/data.csv
+cut -d, -f1,3 practice/data.csv
+tail -n +2 practice/data.csv | sort -t, -k3,3 -k1,1
+```
+
+- `column -s, -t` displays comma-separated fields as an aligned table when the
+  `column` utility is installed. It does not modify the CSV file.
+- `cut -d,` uses a comma as the delimiter. `-f1` selects the first field, while
+  `-f1,3` selects the first and third fields. Fields are numbered from one.
+- `tail -n +2` starts at line two, excluding the header before sorting.
+- `sort -t,` treats commas as separators. `-k3,3` sorts by only the third field,
+  then `-k1,1` uses the first field as a tie-breaker.
+
+These simple commands do not fully parse CSV quoting rules. Use a CSV-aware tool
+when fields can contain quoted commas, embedded newlines, or escaped quotation marks.
+
+## Build text-processing pipelines
+
+A pipeline passes each command's standard output to the next command's standard
+input. Use small stages and inspect intermediate output while learning:
+
+```bash
+cut -d' ' -f3 practice/logs/app.log
+cut -d' ' -f3 practice/logs/app.log | sort
+cut -d' ' -f3 practice/logs/app.log | sort | uniq -c
+grep 'ERROR' practice/logs/app.log | cut -d' ' -f1,2,4-
+```
+
+The first field-extraction pipeline ultimately counts three `ERROR`, three `INFO`,
+and one `WARNING` line. `uniq -c` counts adjacent identical lines, which is why
+`sort` comes first. `sort -u` is a shorter way to print unique sorted values when
+you do not need counts.
+
+In the final command, `grep` selects error records and `cut -f1,2,4-` prints the
+date, time, and every field from the fourth onward, omitting the severity field.
+With `cut -d' '`, repeated spaces create empty fields, so this works predictably
+only because the supplied sample uses single spaces between its first fields.
+
+Other useful transformations include:
+
+```bash
+tr '[:lower:]' '[:upper:]' < practice/data.csv
+sed -n '2,4p' practice/data.csv
+wc -l -w -c practice/logs/app.log
+```
+
+`tr` maps lowercase characters to uppercase on its output. `sed -n '2,4p'` prints
+only lines two through four. `wc -l -w -c` reports newline, word, and byte counts.
+These commands leave the source files unchanged because their output is still going
+to the terminal. Redirect to a different file if you want to save a result.
+
+## Understand pipeline exit statuses
+
+By default, Bash normally reports a pipeline's status as the status of its final
+command. During a script or careful debugging session, enable `pipefail` so a
+failure in an earlier stage makes the pipeline fail:
+
+```bash
+set -o pipefail
+grep 'ERROR' practice/logs/app.log | wc -l
+echo "$?"
+```
+
+`$?` must be checked immediately. `grep` uses `0` for at least one selected line,
+`1` for no selected lines, and `2` for an error. A no-match result is often normal,
+so decide what each status means in the task you are performing.
+
 ## Redirection and pipes
 
 Commands commonly read standard input (stdin), write results to standard output
@@ -184,3 +308,6 @@ on the command.
 3. Record a command, its output, and your explanation in the learning log.
 4. How do `cat -n`, `cat -b`, and `cat -A` differ? Do they edit the source file?
 5. Why might `cat` wait for input, and how do you finish the input?
+6. Why does `uniq -c` normally follow `sort`?
+7. How would you count only ERROR lines in the supplied log?
+8. Why are `cut -d,` examples insufficient for every possible CSV file?
