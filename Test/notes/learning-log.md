@@ -48,3 +48,27 @@ exercise, but does not establish the exact command history.
 **Next question:** Repeat the temporary-directory link exercise and inspect the
 link count before and after deleting one name. See the
 [session notes](04-copy-move-and-link-practice.md) for commands and explanations.
+
+## 2026-09-11 — Text processing, searching, and permissions
+
+**Goal:** Create realistic practice inputs and explore executable permissions.
+
+**Starting directory:** `/home/sam/Learn-Linux/Test`
+
+**Observed result:** Added `practice/data.csv` with a header and four invented
+employee records. Added `practice/logs/app.log` with seven invented INFO, WARNING,
+and ERROR records. Changed the empty dummy `backups/Test.py` from mode `644` to
+`755`, giving it execute permission for owner, group, and others.
+
+**Explanation:** The CSV supports delimiter and field exercises with `cut` and
+`sort`. The log supports filtering, regular expressions, context, counts, and
+pipelines with `grep`. The mode change demonstrates how `chmod` affects access;
+it does not add program contents or make an empty file useful to execute.
+
+**Progress:** I now have practice examples for navigation, files, links, content
+viewing and editing, metadata, searching, pipelines, and permission modes. The
+next step is to predict command output before running it and explain each option
+afterward rather than only memorizing command lines.
+
+**Next question:** How do group membership, `umask`, and parent-directory
+permissions combine to determine whether a user can access or change a file?
