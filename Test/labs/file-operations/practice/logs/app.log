@@ -1,0 +1,7 @@
+2026-09-10 10:00:01 INFO Server started
+2026-09-10 10:01:15 ERROR Database connection failed
+2026-09-10 10:01:16 ERROR Retrying connection
+2026-09-10 10:01:20 INFO Database connection established
+2026-09-10 10:05:33 WARNING High memory usage
+2026-09-10 10:10:02 ERROR Timeout on request /api/users
+2026-09-10 10:12:44 INFO Request completed /api/users
