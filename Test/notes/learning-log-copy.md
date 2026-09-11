@@ -49,3 +49,4 @@ exercise, but does not establish the exact command history.
 link count before and after deleting one name. See the
 [session notes](04-copy-move-and-link-practice.md) for commands and explanations.
 extra line for testing diff
+extra line for testing diff
