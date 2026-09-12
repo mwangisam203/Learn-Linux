@@ -17,10 +17,17 @@ practice data.** Empty files are intentional; this is not a working application.
 │   ├── 04-copy-move-and-link-practice.md
 │   ├── 05-file-metadata-with-stat.md
 │   ├── 06-viewing-and-editing-content.md
+│   ├── 07-shell-command-anatomy.md
+│   ├── 08-review-drills.md
+│   ├── 09-review-answers.md
+│   ├── command-reference.md
+│   ├── study-routine.md
 │   ├── learning-log.md
 │   └── original-link-exercise.md
 └── labs/                       # Files to inspect and manipulate
+    ├── README.md               # Scope and safe practice reminders
     ├── file-operations/
+    │   ├── README.md           # Fixture guide and scratch workflow
     │   ├── backups/            # Dummy backup files
     │   ├── test_main_hard.py   # Remaining name from the file identity exercise
     │   └── practice/
@@ -50,6 +57,9 @@ Open a Bash terminal in the repository root and follow these notes in order:
 4. [Copy, move, and link practice](notes/04-copy-move-and-link-practice.md)
 5. [File metadata with stat](notes/05-file-metadata-with-stat.md)
 6. [Viewing and editing file content](notes/06-viewing-and-editing-content.md)
+7. [Shell command anatomy](notes/07-shell-command-anatomy.md)
+8. [Review drills](notes/08-review-drills.md)
+9. [Review answers](notes/09-review-answers.md)
 
 Each note states where to run its examples. Run commands individually and observe
 the results. Commands affect the paths you give them, even in a practice repository.
@@ -58,6 +68,9 @@ The latest session moved a backup into the mock docs folder, left a remaining te
 filename and a separate copy, and added `docs_link` for directory navigation.
 The fourth note explains the observed results. Hard-link identity is local to the
 working filesystem; Git does not preserve it when cloning.
+
+Use the [command reference](notes/command-reference.md) for quick recall and the
+[study routine](notes/study-routine.md) to turn each topic into a repeatable session.
 
 ## README versus notes
 
