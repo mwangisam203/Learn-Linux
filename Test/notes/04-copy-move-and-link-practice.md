@@ -114,6 +114,18 @@ to use them, Git recreates the symlink from its stored target string.
 
 ## Check your understanding
 
+Use this comparison when reviewing file identity:
+
+| Operation | Source remains? | New inode normally? | Later content shared? |
+| --- | --- | --- | --- |
+| `cp source copy` | Yes | Yes | No |
+| Same-filesystem `mv old new` | No old name | No | It is the same object under a new name |
+| `ln source hard` | Yes | No | Yes |
+| `ln -s source soft` | Yes | The link has its own inode | Access follows the stored target path |
+
+Verify rather than infer from filenames: compare device and inode with `stat`,
+the hard-link count with `ls -li`, and a symlink target with `readlink`.
+
 1. Why can six Git status entries represent fewer than six filesystem operations?
 2. Why do two empty files with different inodes remain independent files?
 3. Why does a remaining hard-link name have a count of one after the other is removed?
