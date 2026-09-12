@@ -72,3 +72,18 @@ afterward rather than only memorizing command lines.
 
 **Next question:** How do group membership, `umask`, and parent-directory
 permissions combine to determine whether a user can access or change a file?
+
+## 2026-09-12 — Reinforcement and review
+
+**Goal:** Connect individual commands into repeatable problem-solving workflows.
+
+**Observed result:** Reviewed navigation, path discovery, file identity, metadata,
+text viewing and editing, content searches, pipelines, and permissions. Added
+short references, practice drills, and explanations of how to verify each result.
+
+**Explanation:** Memorizing a command is less useful than knowing its input,
+output, side effects, and exit status. The same inspect–predict–run–verify cycle
+works for file operations, text processing, links, and access troubleshooting.
+
+**Next question:** Can I solve each review drill without copying the answer, then
+explain why every option is present?
