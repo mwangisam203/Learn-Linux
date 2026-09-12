@@ -17,11 +17,10 @@ three-line sample.
 
 ## Identify a file before opening it
 
-````bash
+```bash
 file scratch/settings.conf
 stat -c 'type=%F bytes=%s permissions=%A name=%n' scratch/settings.conf
-
-##testing edits via terminal```
+```
 
 `file` examines content and reports its likely type. `stat` reports metadata rather
 than contents. This is useful when a filename or extension does not tell you what
@@ -49,7 +48,7 @@ head -n 2 scratch/settings.conf
 tail -n 1 scratch/settings.conf
 grep -n 'port' scratch/settings.conf
 less scratch/settings.conf
-````
+```
 
 Inside `less`, use the arrow keys or Page Up/Page Down to move, `/text` to search
 forward, `?text` to search backward, `n` for the next match, `N` for the previous
@@ -234,6 +233,16 @@ symlinks, hard links, permissions, or extended metadata depending on the program
 Inspect links with `stat`, `readlink`, and `ls -li` before editing through them.
 
 ## Check your understanding
+
+Reinforce safe editing with a four-step loop:
+
+1. **Inspect:** identify the type, ownership, permissions, and current content.
+2. **Protect:** work on a scratch copy or create an appropriate backup.
+3. **Edit:** make one understandable change with an editor or command.
+4. **Verify:** reread the content, inspect metadata, and review `git diff` if tracked.
+
+This loop separates observation from mutation. If the result is unexpected, stop
+and compare the backup rather than layering more edits onto an uncertain state.
 
 1. Which command would you choose for a large log, and how do you leave it?
 2. What is the difference between `>` and `>>`?
