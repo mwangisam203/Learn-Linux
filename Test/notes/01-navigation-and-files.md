@@ -84,20 +84,37 @@ path as depth zero; `-print` prints each selected path. `file` identifies conten
 type, and `wc -c` counts bytes. The supplied JSON file is empty: its extension is
 only a name, and it does not contain valid JSON yet.
 
+## Find paths and resolve links
 
-When in doubt, use find to locate it, then cat the result
+Use `find` when you want current filesystem results. Start from the narrowest
+directory that could contain the item:
 
-If you're not sure where a file actually lives:
+```bash
+find notes -type f -name '01-navigation-and-files.md'
+find labs -type f -iname '*.PY'
+find labs -type l -print
+```
 
-bash
-#example -->> find ~ -name "01-navigation-and-files.md"
+`-name` is case-sensitive, while `-iname` ignores case. `-type f` selects regular
+files and `-type l` selects symbolic links. Quote wildcard patterns so Bash passes
+them to `find` instead of expanding them first.
 
+Compare path-resolution commands from the repository root:
 
-cd ~/Learn-Linux/Test
-realpath notes/01-navigation-and-files.md        # absolute path from a relative one
-realpath labs/links/soft.txt                      # follows the symlink to original.txt's real location
-readlink labs/links/soft.txt                       # shows the raw, unresolved target
-ls -la labs/links/                                  # visually confirms the -> target
+```bash
+realpath notes/01-navigation-and-files.md
+realpath labs/links/soft.txt
+readlink labs/links/soft.txt
+ls -la labs/links/
+```
+
+`realpath` produces a canonical absolute path and normally follows symlinks.
+`readlink` prints the target string stored in a symlink. `ls -l` displays that
+relationship as `link -> target`.
+
+`locate NAME` searches a prebuilt database and can be faster than `find`, but its
+results may be stale. The database update command and permissions vary by system.
+Use `find` for a file you just created or when current results matter.
 
 ## Check your understanding
 
@@ -105,12 +122,5 @@ ls -la labs/links/                                  # visually confirms the -> t
 2. Can you locate `.env` using `ls -la practice`?
 3. Rename your scratch message and locate it without changing directories.
 4. Explain the difference between `rmdir` and `rm` in your learning log.
-
-Round 5 — locate gotcha, same idea
-
-Right after you create test_copy.py in step 1 above, before touching updatedb:
-
-bash
-locate test_copy.py     # very likely empty — index doesn't know it exists yet
-sudo updatedb
-locate test_copy.py     # now it should show the full path
+5. Why might `locate` miss a file that `find` discovers immediately?
+6. What is the difference between `realpath` and `readlink` on `soft.txt`?
