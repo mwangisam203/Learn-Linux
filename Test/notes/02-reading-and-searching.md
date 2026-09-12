@@ -301,6 +301,27 @@ Many GNU commands support `--help`. `cd` is a Bash builtin, so use `help cd`.
 zero means success and nonzero indicates another outcome or failure, depending
 on the command.
 
+## Choose the smallest search tool
+
+Use this decision order when you are unsure:
+
+1. Use `find` to search for filesystem paths by name, type, size, or time.
+2. Use `grep -F` to search file contents for literal text.
+3. Use `grep -E` only when the pattern needs regular-expression operators.
+4. Add `-r` only when the search must descend through directories.
+5. Pipe into `cut`, `sort`, `uniq`, or `wc` after confirming the search output.
+
+Test one stage at a time:
+
+```bash
+grep 'ERROR' practice/logs/app.log
+grep 'ERROR' practice/logs/app.log | cut -d' ' -f4-
+grep 'ERROR' practice/logs/app.log | cut -d' ' -f4- | sort
+```
+
+This progression makes it clear which command changed the output. It also prevents
+a correct final count from hiding a mistake in an earlier stage.
+
 ## Check your understanding
 
 1. Why might a filename search find files that a content search does not?
