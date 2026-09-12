@@ -138,6 +138,22 @@ For local reference, use `stat --help`, `man stat`, or
 
 ## Check your understanding
 
+A useful metadata-inspection sequence is:
+
+```bash
+file PATH
+ls -ld PATH
+stat PATH
+readlink PATH
+stat -L PATH
+```
+
+Replace `PATH` with a real path. `file` identifies content or entry type, `ls -ld`
+summarizes the directory entry, and `stat` gives detailed metadata. Run `readlink`
+and `stat -L` when the entry is a symlink; `readlink` shows the stored target while
+`stat -L` describes the resolved target. A failed command can itself be evidence,
+such as `readlink` returning nonzero for a regular file.
+
 1. Why can `cat` print nothing while `stat` shows many fields for the same file?
 2. Which timestamp changes when permissions change? Is it the creation time?
 3. Why compare both device and inode when checking for hard links?
