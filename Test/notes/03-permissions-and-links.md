@@ -203,6 +203,22 @@ when the condition succeeds. Access control lists, mount options, read-only
 filesystems, security modules, and superuser rules can affect real access beyond
 the basic mode bits.
 
+## Troubleshoot access methodically
+
+Before changing a mode or owner, use this order:
+
+1. Confirm the path with `realpath` and determine whether it is a link.
+2. Inspect every directory component with `namei -l PATH` when available.
+3. Inspect owner, group, and mode with `stat` or `ls -l`.
+4. Check your user and groups with `id`.
+5. Decide which single permission or ownership relationship is incorrect.
+6. Apply the smallest change and inspect the result again.
+
+Inability to remove a writable file often points to its parent directory permissions.
+Inability to enter a readable directory often means its execute/search bit is
+missing. This method is more reliable than broadly adding permissions until a
+command happens to work.
+
 ## Understand the supplied links
 
 These inode relationships describe this working directory. Git does not preserve
